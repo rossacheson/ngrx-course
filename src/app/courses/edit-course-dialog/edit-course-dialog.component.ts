@@ -66,6 +66,15 @@ export class EditCourseDialogComponent {
         if (this.mode === 'update') {
             this.coursesService.update(course);
             this.dialogRef.close();
+        } else if (this.mode === 'create') {
+            // add is pessimistic by default because we need the generated id from the backend
+            this.coursesService.add(course)
+                .subscribe(
+                    newCourse => {
+                        console.log('New Course', newCourse);
+                        this.dialogRef.close();
+                    }
+                );
         }
     }
 
