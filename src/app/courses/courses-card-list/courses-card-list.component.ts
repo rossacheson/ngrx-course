@@ -47,7 +47,11 @@ export class CoursesCardListComponent implements OnInit {
     onDeleteCourse(course: Course) {
         // delete is optimistic by default
         // subscribing is optional, not required for the HTTP request to fire
-        this.courseService.delete(course);
+        this.courseService.delete(course)
+            .subscribe(
+                () => console.log('Delete complete'),
+                err => console.log('Delete failed', err)
+            );
     }
 
 }
